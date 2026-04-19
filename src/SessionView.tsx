@@ -73,14 +73,14 @@ export function SessionView({
       </header>
 
       <div className="session-meta">
-        <div>
-          <span className="muted">Pair:</span>{" "}
+        <div className="market-row">
+          <span className="muted">Pair:</span>
           <strong>
             {symbol(session.paidCurrency)} → {symbol(session.receivedCurrency)}
           </strong>
-        </div>
-        <div className="market-row">
-          <span className="muted">Market rate:</span>{" "}
+          <span className="muted" style={{ marginLeft: 8 }}>
+            Market rate:
+          </span>
           {editing ? (
             <>
               <input
@@ -192,7 +192,7 @@ export function SessionView({
                     <td>{formatPercent(feeShareVsMarket(dp, session))}</td>
                     <td>
                       <button
-                        className="link-btn"
+                        className="link-btn danger"
                         onClick={() => onRemoveDataPoint(dp.id)}
                         aria-label="Remove data point"
                       >
@@ -213,7 +213,7 @@ export function SessionView({
                     {formatDateTime(dp.createdAt)}
                   </span>
                   <button
-                    className="link-btn"
+                    className="link-btn danger"
                     onClick={() => onRemoveDataPoint(dp.id)}
                     aria-label="Remove data point"
                   >

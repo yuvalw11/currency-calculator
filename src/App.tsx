@@ -5,6 +5,7 @@ import { formatDateTime, symbol } from "./types";
 import { loadSessions, saveSessions } from "./storage";
 import { SessionView } from "./SessionView";
 import { NewSessionForm } from "./NewSessionForm";
+import { Logo } from "./Logo";
 
 export default function App() {
   const [sessions, setSessions] = useState<Session[]>(() => loadSessions());
@@ -55,14 +56,20 @@ export default function App() {
         >
           ☰
         </button>
-        <h1>Wise</h1>
+        <div className="brand">
+          <Logo size={24} />
+          <h1>Curcon</h1>
+        </div>
       </div>
       {navOpen && (
         <div className="nav-backdrop" onClick={() => setNavOpen(false)} />
       )}
       <aside className="sidebar">
         <div className="sidebar-header">
-          <h1>Wise</h1>
+          <div className="brand">
+            <Logo size={28} />
+            <h1>Curcon</h1>
+          </div>
           <button
             onClick={() => {
               setCreating(true);
@@ -97,7 +104,7 @@ export default function App() {
                   {s.dataPoints.length === 1 ? "" : "s"}
                 </div>
                 <button
-                  className="link-btn small"
+                  className="link-btn small danger"
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteSession(s.id);

@@ -1,0 +1,31 @@
+interface Props {
+  size?: number;
+}
+
+export function Logo({ size = 28 }: Props) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 80 80"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="26" cy="54" r="18" fill="#eef0f2" stroke="#1c1e22" strokeWidth="2.2" />
+      <circle cx="26" cy="54" r="11.5" fill="none" stroke="#1c1e22" strokeWidth="1.5" />
+      <line x1="26" y1="47" x2="26" y2="61" stroke="#1c1e22" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="21" y1="51" x2="31" y2="51" stroke="#1c1e22" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="21" y1="57" x2="31" y2="57" stroke="#1c1e22" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M44 74 L74 74" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="70" y1="74" x2="70" y2="66" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="48" y1="74" x2="48" y2="68" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="70" y1="66" x2="70" y2="16" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="70" y1="22" x2="55" y2="22" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="55" y1="22" x2="46" y2="38" stroke="#1c1e22" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="42.5" y1="36" x2="49.5" y2="40" stroke="#1c1e22" strokeWidth="2.2" strokeLinecap="round" />
+      <rect x="63" y="8" width="14" height="10" rx="3.5" fill="#1c1e22" />
+      <circle cx="74" cy="40" r="4" fill="none" stroke="#1c1e22" strokeWidth="2.2" />
+      <line x1="42" y1="66" x2="68" y2="66" stroke="#1c1e22" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}

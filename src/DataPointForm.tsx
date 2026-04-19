@@ -10,15 +10,15 @@ interface Props {
 
 export function DataPointForm({ session, onAdd }: Props) {
   const [paidAmount, setPaidAmount] = useState("");
-  const [receivedAmount, setReceivedAmount] = useState("");
   const [fees, setFees] = useState("");
+  const [receivedAmount, setReceivedAmount] = useState("");
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const paid = parseFloat(paidAmount);
     const received = parseFloat(receivedAmount);
-    const fee = parseFloat(fees);
-    if (!isFinite(paid) || !isFinite(received) || !isFinite(fee)) return;
+    const fee = parseFloat(fees) || 0;
+    if (!isFinite(paid) || !isFinite(received)) return;
     if (paid <= 0 || received <= 0 || fee < 0) return;
     if (fee >= paid) return;
 
@@ -31,15 +31,15 @@ export function DataPointForm({ session, onAdd }: Props) {
     });
 
     setPaidAmount("");
-    setReceivedAmount("");
     setFees("");
+    setReceivedAmount("");
   }
 
   return (
     <form className="dp-form" onSubmit={submit}>
       <div className="row">
         <label>
-          Paid amount ({symbol(session.paidCurrency)})
+          Paid ({symbol(session.paidCurrency)})
           <input
             type="number"
             inputMode="decimal"
@@ -47,25 +47,12 @@ export function DataPointForm({ session, onAdd }: Props) {
             min="0"
             value={paidAmount}
             onChange={(e) => setPaidAmount(e.target.value)}
-            placeholder="100.00"
+            placeholder="0.00"
             required
           />
         </label>
         <label>
-          Received amount ({symbol(session.receivedCurrency)})
-          <input
-            type="number"
-            inputMode="decimal"
-            step="any"
-            min="0"
-            value={receivedAmount}
-            onChange={(e) => setReceivedAmount(e.target.value)}
-            placeholder="90.00"
-            required
-          />
-        </label>
-        <label>
-          Fees ({symbol(session.paidCurrency)}, included in paid)
+          Fees ({symbol(session.paidCurrency)})
           <input
             type="number"
             inputMode="decimal"
@@ -73,13 +60,24 @@ export function DataPointForm({ session, onAdd }: Props) {
             min="0"
             value={fees}
             onChange={(e) => setFees(e.target.value)}
-            placeholder="2.00"
+            placeholder="0.00"
+          />
+        </label>
+        <label>
+          Received ({symbol(session.receivedCurrency)})
+          <input
+            type="number"
+            inputMode="decimal"
+            step="any"
+            min="0"
+            value={receivedAmount}
+            onChange={(e) => setReceivedAmount(e.target.value)}
+            placeholder="0.00"
             required
           />
         </label>
+        <button type="submit">Add</button>
       </div>
-
-      <button type="submit">Add data point</button>
     </form>
   );
 }
